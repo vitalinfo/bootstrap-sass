@@ -1,4 +1,6 @@
 @use "sass:math";
+@use "../variables" as variables;
+
 // Navbar vertical align
 //
 // Vertically center elements in the navbar.
@@ -6,7 +8,7 @@
 
 @mixin navbar-vertical-align($element-height) {
   & {
-    margin-top: math.div(($navbar-height - $element-height), 2);
-    margin-bottom: math.div(($navbar-height - $element-height), 2);
+    margin-top: math.div((variables.$navbar-height - $element-height), 2);
+    margin-bottom: math.div((variables.$navbar-height - $element-height), 2);
   }
 }

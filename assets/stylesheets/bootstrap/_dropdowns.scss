@@ -1,3 +1,8 @@
+@use "variables" as variables;
+@use "mixins/nav-divider" as nav-divider;
+@use "mixins/reset-filter" as reset-filter;
+@use "mixins/vendor-prefixes" as vendor-prefixes;
+
 //
 // Dropdown menus
 // --------------------------------------------------
@@ -10,10 +15,10 @@
   height: 0;
   margin-left: 2px;
   vertical-align: middle;
-  border-top: $caret-width-base dashed;
-  border-top: $caret-width-base solid \9; // IE8
-  border-right: $caret-width-base solid transparent;
-  border-left: $caret-width-base solid transparent;
+  border-top: variables.$caret-width-base dashed;
+  border-top: variables.$caret-width-base solid \9; // IE8
+  border-right: variables.$caret-width-base solid transparent;
+  border-left: variables.$caret-width-base solid transparent;
 }
 
 // The dropdown wrapper (div)
@@ -32,21 +37,21 @@
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: $zindex-dropdown;
+  z-index: variables.$zindex-dropdown;
   display: none; // none by default, but block on "open" of the menu
   float: left;
   min-width: 160px;
   padding: 5px 0;
   margin: 2px 0 0; // override default ul
-  font-size: $font-size-base;
+  font-size: variables.$font-size-base;
   text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
   list-style: none;
-  background-color: $dropdown-bg;
+  background-color: variables.$dropdown-bg;
   background-clip: padding-box;
-  border: 1px solid $dropdown-fallback-border; // IE8 fallback
-  border: 1px solid $dropdown-border;
-  border-radius: $border-radius-base;
-  @include box-shadow(0 6px 12px rgba(0, 0, 0, .175));
+  border: 1px solid variables.$dropdown-fallback-border; // IE8 fallback
+  border: 1px solid variables.$dropdown-border;
+  border-radius: variables.$border-radius-base;
+  @include vendor-prefixes.box-shadow(0 6px 12px rgba(0, 0, 0, .175));
 
   // Aligns the dropdown menu to right
   //
@@ -58,7 +63,7 @@
 
   // Dividers (basically an hr) within the dropdown
   .divider {
-    @include nav-divider($dropdown-divider-bg);
+    @include nav-divider.nav-divider(variables.$dropdown-divider-bg);
   }
 
   // Links within the dropdown menu
@@ -67,15 +72,15 @@
     padding: 3px 20px;
     clear: both;
     font-weight: 400;
-    line-height: $line-height-base;
-    color: $dropdown-link-color;
+    line-height: variables.$line-height-base;
+    color: variables.$dropdown-link-color;
     white-space: nowrap; // prevent links from randomly breaking onto new lines
 
     &:hover,
     &:focus {
-      color: $dropdown-link-hover-color;
+      color: variables.$dropdown-link-hover-color;
       text-decoration: none;
-      background-color: $dropdown-link-hover-bg;
+      background-color: variables.$dropdown-link-hover-bg;
     }
   }
 }
@@ -85,9 +90,9 @@
   &,
   &:hover,
   &:focus {
-    color: $dropdown-link-active-color;
+    color: variables.$dropdown-link-active-color;
     text-decoration: none;
-    background-color: $dropdown-link-active-bg;
+    background-color: variables.$dropdown-link-active-bg;
     outline: 0;
   }
 }
@@ -100,17 +105,17 @@
   &,
   &:hover,
   &:focus {
-    color: $dropdown-link-disabled-color;
+    color: variables.$dropdown-link-disabled-color;
   }
 
   // Nuke hover/focus effects
   &:hover,
   &:focus {
     text-decoration: none;
-    cursor: $cursor-disabled;
+    cursor: variables.$cursor-disabled;
     background-color: transparent;
     background-image: none; // Remove CSS gradient
-    @include reset-filter;
+    @include reset-filter.reset-filter;
   }
 }
 
@@ -150,9 +155,9 @@
 .dropdown-header {
   display: block;
   padding: 3px 20px;
-  font-size: $font-size-small;
-  line-height: $line-height-base;
-  color: $dropdown-header-color;
+  font-size: variables.$font-size-small;
+  line-height: variables.$line-height-base;
+  color: variables.$dropdown-header-color;
   white-space: nowrap; // as with > li > a
 }
 
@@ -163,7 +168,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: ($zindex-dropdown - 10);
+  z-index: (variables.$zindex-dropdown - 10);
 }
 
 // Right aligned dropdowns
@@ -183,8 +188,8 @@
   .caret {
     content: "";
     border-top: 0;
-    border-bottom: $caret-width-base dashed;
-    border-bottom: $caret-width-base solid \9; // IE8
+    border-bottom: variables.$caret-width-base dashed;
+    border-bottom: variables.$caret-width-base solid \9; // IE8
   }
   // Different positioning for bottom up menu
   .dropdown-menu {
@@ -199,7 +204,7 @@
 //
 // Reiterate per navbar.less and the modified component alignment there.
 
-@media (min-width: $grid-float-breakpoint) {
+@media (min-width: variables.$grid-float-breakpoint) {
   .navbar-right {
     .dropdown-menu {
       right: 0; left: auto;
